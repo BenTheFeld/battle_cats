@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://b5kv7melflk02"]
+
+[ext_resource type="Texture2D" uid="uid://b6eagbfimgiea" path="res://assets/sprites/troop.png" id="1_6qk32"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_po335"]
+size = Vector2(689, 733)
+
+[node name="enemy_troop" type="Area2D" groups=["enemy"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 5.5)
+shape = SubResource("RectangleShape2D_po335")
+
+[node name="Troop" type="Sprite2D" parent="."]
+scale = Vector2(-1, 1)
+texture = ExtResource("1_6qk32")
