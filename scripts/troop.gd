@@ -11,5 +11,5 @@ func _on_area_entered(area):
 		speed = -1
 
 		
-func _physics_process(delta):
+func _physics_process(float):
 	move_local_x(speed)
