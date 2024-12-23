@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b3dba7rkwbnqo"]
 
 [ext_resource type="Texture2D" uid="uid://drx62hwkmwgmn" path="res://assets/sprites/grass.png" id="1_dy3ee"]
-[ext_resource type="PackedScene" uid="uid://b5kv7melflk02" path="res://scenes/enemy_troop.tscn" id="3_f2l8b"]
+[ext_resource type="PackedScene" uid="uid://8fylaj05a772" path="res://scenes/enemy_troop.tscn" id="3_f2l8b"]
 [ext_resource type="PackedScene" uid="uid://cfvw6345fnk5p" path="res://scenes/basic_troop.tscn" id="3_nthl7"]
 
 [node name="game" type="Node2D"]
