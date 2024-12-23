@@ -1,16 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5kv7melflk02"]
+[gd_scene load_steps=6 format=3 uid="uid://8fylaj05a772"]
 
 [ext_resource type="Texture2D" uid="uid://b6eagbfimgiea" path="res://assets/sprites/troop.png" id="1_6qk32"]
+[ext_resource type="Script" path="res://scripts/troop.gd" id="1_ap8ck"]
+[ext_resource type="Script" path="res://scripts/troop_range.gd" id="3_chunu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_po335"]
-size = Vector2(689, 733)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_by3cu"]
+size = Vector2(697, 758)
 
-[node name="enemy_troop" type="Area2D" groups=["enemy"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ejal"]
+size = Vector2(1000, 758)
+
+[node name="enemy_troop" type="Area2D" groups=["troop"]]
+scale = Vector2(-1, 1)
+script = ExtResource("1_ap8ck")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-0.5, 5.5)
-shape = SubResource("RectangleShape2D_po335")
+shape = SubResource("RectangleShape2D_by3cu")
 
 [node name="Troop" type="Sprite2D" parent="."]
-scale = Vector2(-1, 1)
 texture = ExtResource("1_6qk32")
+
+[node name="troop_range" type="Area2D" parent="."]
+script = ExtResource("3_chunu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="troop_range"]
+position = Vector2(-151.5, 0)
+shape = SubResource("RectangleShape2D_8ejal")
+debug_color = Color(0.817772, 0.373445, 0.422414, 0.42)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="troop_range" to="troop_range" method="_on_area_entered"]
