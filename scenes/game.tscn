@@ -11,10 +11,14 @@ position = Vector2(429, 225)
 position = Vector2(74, 17)
 texture = ExtResource("1_dy3ee")
 
-[node name="enemy_troop" parent="." instance=ExtResource("3_f2l8b")]
-position = Vector2(192, -10)
-scale = Vector2(0.1, 0.1)
-
 [node name="basic_troop" parent="." instance=ExtResource("3_nthl7")]
 position = Vector2(425, -12)
+scale = Vector2(0.1, 0.1)
+
+[node name="enemy_troop" parent="." instance=ExtResource("3_f2l8b")]
+position = Vector2(-90, -9)
+scale = Vector2(-0.1, 0.1)
+
+[node name="basic_troop2" parent="." instance=ExtResource("3_nthl7")]
+position = Vector2(270, -14)
 scale = Vector2(0.1, 0.1)
