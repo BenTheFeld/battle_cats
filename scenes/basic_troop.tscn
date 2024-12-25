@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cfvw6345fnk5p"]
+[gd_scene load_steps=5 format=3 uid="uid://cfvw6345fnk5p"]
 
 [ext_resource type="Script" path="res://scripts/troop.gd" id="1_6pa3d"]
 [ext_resource type="Texture2D" uid="uid://b6eagbfimgiea" path="res://assets/sprites/troop.png" id="1_dn8fr"]
-[ext_resource type="Script" path="res://scripts/troop_range.gd" id="3_0isup"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_by3cu"]
 size = Vector2(697, 758)
@@ -20,7 +19,6 @@ shape = SubResource("RectangleShape2D_by3cu")
 texture = ExtResource("1_dn8fr")
 
 [node name="troop_range" type="Area2D" parent="."]
-script = ExtResource("3_0isup")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="troop_range"]
 position = Vector2(-151.5, 0)
@@ -28,4 +26,8 @@ shape = SubResource("RectangleShape2D_8ejal")
 debug_color = Color(0.817772, 0.373445, 0.422414, 0.42)
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="." to="troop_range" method="_on_basic_troop_area_entered"]
+[connection signal="area_exited" from="." to="troop_range" method="_on_basic_troop_area_exited"]
+[connection signal="area_entered" from="troop_range" to="." method="_on_troop_range_area_entered"]
 [connection signal="area_entered" from="troop_range" to="troop_range" method="_on_area_entered"]
+[connection signal="area_exited" from="troop_range" to="." method="_on_troop_range_area_exited"]
