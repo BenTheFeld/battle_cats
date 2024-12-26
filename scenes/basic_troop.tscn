@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cfvw6345fnk5p"]
+[gd_scene load_steps=13 format=3 uid="uid://cfvw6345fnk5p"]
 
 [ext_resource type="Script" path="res://scripts/troop.gd" id="1_6pa3d"]
 [ext_resource type="Texture2D" uid="uid://ur82nfyrjxiq" path="res://assets/sprites/000_f.webp" id="2_opnlx"]
@@ -21,10 +21,6 @@ region = Rect2(0, 57, 47, 57)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ytpj2"]
 atlas = ExtResource("2_opnlx")
 region = Rect2(47, 57, 47, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bgqje"]
-atlas = ExtResource("2_opnlx")
-region = Rect2(0, 0, 47, 57)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0ay85"]
 atlas = ExtResource("2_opnlx")
@@ -52,6 +48,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ytpj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ytpj2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0ay85")
 }],
 "loop": false,
 "name": &"attack",
@@ -60,14 +62,6 @@ animations = [{
 "frames": [],
 "loop": true,
 "name": &"hurt",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bgqje")
-}],
-"loop": true,
-"name": &"wait",
 "speed": 5.0
 }, {
 "frames": [{
@@ -102,11 +96,11 @@ shape = SubResource("RectangleShape2D_by3cu")
 position = Vector2(-1, -45)
 scale = Vector2(15, 15)
 sprite_frames = SubResource("SpriteFrames_cekqv")
-animation = &"wait"
+animation = &"attack"
 autoplay = "walk"
 
 [node name="cooldown" type="Timer" parent="troop_sprite"]
-wait_time = 0.5
+wait_time = 0.8
 one_shot = true
 
 [node name="troop_range" type="Area2D" parent="."]
@@ -117,7 +111,6 @@ position = Vector2(-151.5, 0)
 shape = SubResource("RectangleShape2D_8ejal")
 debug_color = Color(0.817772, 0.373445, 0.422414, 0.42)
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_entered" from="." to="troop_range" method="_on_basic_troop_area_entered"]
 [connection signal="area_exited" from="." to="troop_range" method="_on_basic_troop_area_exited"]
 [connection signal="animation_finished" from="troop_sprite" to="." method="_on_troop_sprite_animation_finished"]
