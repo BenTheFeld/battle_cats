@@ -1,86 +1,66 @@
-[gd_scene load_steps=13 format=3 uid="uid://cfvw6345fnk5p"]
+[gd_scene load_steps=9 format=3 uid="uid://cfvw6345fnk5p"]
 
 [ext_resource type="Script" path="res://scripts/troop.gd" id="1_6pa3d"]
-[ext_resource type="Texture2D" uid="uid://ur82nfyrjxiq" path="res://assets/sprites/000_f.webp" id="2_opnlx"]
+[ext_resource type="Texture2D" uid="uid://6oo3ky8r18io" path="res://assets/sprites/vvmrxw7s.png" id="2_mjyh2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_by3cu"]
 size = Vector2(697, 758)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_767pn"]
-atlas = ExtResource("2_opnlx")
-region = Rect2(141, 57, 47, 57)
+[sub_resource type="Animation" id="Animation_xgyjg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rrnf5"]
-atlas = ExtResource("2_opnlx")
-region = Rect2(188, 0, 47, 57)
+[sub_resource type="Animation" id="Animation_6hnvg"]
+resource_name = "attack"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 8, 5, 6]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_0esg2"]
-atlas = ExtResource("2_opnlx")
-region = Rect2(0, 57, 47, 57)
+[sub_resource type="Animation" id="Animation_1817j"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 0, 1, 0]
+}
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ytpj2"]
-atlas = ExtResource("2_opnlx")
-region = Rect2(47, 57, 47, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_0ay85"]
-atlas = ExtResource("2_opnlx")
-region = Rect2(0, 0, 47, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_s3g45"]
-atlas = ExtResource("2_opnlx")
-region = Rect2(47, 0, 47, 57)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2p2hi"]
-atlas = ExtResource("2_opnlx")
-region = Rect2(94, 0, 47, 57)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_cekqv"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_767pn")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_rrnf5")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0esg2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ytpj2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_ytpj2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0ay85")
-}],
-"loop": false,
-"name": &"attack",
-"speed": 5.0
-}, {
-"frames": [],
-"loop": true,
-"name": &"hurt",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0ay85")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_s3g45")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_0ay85")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2p2hi")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f5rrs"]
+_data = {
+"RESET": SubResource("Animation_xgyjg"),
+"attack": SubResource("Animation_6hnvg"),
+"walk": SubResource("Animation_1817j")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ejal"]
 size = Vector2(1000, 758)
@@ -89,32 +69,31 @@ size = Vector2(1000, 758)
 script = ExtResource("1_6pa3d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("RectangleShape2D_by3cu")
 
-[node name="troop_sprite" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1, -45)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -50)
 scale = Vector2(15, 15)
-sprite_frames = SubResource("SpriteFrames_cekqv")
-animation = &"attack"
+texture = ExtResource("2_mjyh2")
+hframes = 5
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_f5rrs")
+}
 autoplay = "walk"
 
-[node name="cooldown" type="Timer" parent="troop_sprite"]
-wait_time = 0.8
-one_shot = true
-
 [node name="troop_range" type="Area2D" parent="."]
-visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="troop_range"]
-position = Vector2(-151.5, 0)
+position = Vector2(-148, 0)
 shape = SubResource("RectangleShape2D_8ejal")
 debug_color = Color(0.817772, 0.373445, 0.422414, 0.42)
 
 [connection signal="area_entered" from="." to="troop_range" method="_on_basic_troop_area_entered"]
 [connection signal="area_exited" from="." to="troop_range" method="_on_basic_troop_area_exited"]
-[connection signal="animation_finished" from="troop_sprite" to="." method="_on_troop_sprite_animation_finished"]
-[connection signal="timeout" from="troop_sprite/cooldown" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="troop_range" to="." method="_on_troop_range_area_entered"]
 [connection signal="area_entered" from="troop_range" to="troop_range" method="_on_area_entered"]
 [connection signal="area_exited" from="troop_range" to="." method="_on_troop_range_area_exited"]
