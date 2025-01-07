@@ -10,6 +10,10 @@ var enemy = 0
 
 #@onready var cooldown: Timer = $troop_sprite/cooldown
 
+func damage():
+	print(get_overlapping_areas())
+	print("damage")
+
 func attack():
 	if  is_ready == true and enemy > 0:
 		is_ready = false
