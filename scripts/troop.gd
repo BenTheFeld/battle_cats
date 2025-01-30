@@ -1,42 +1,37 @@
 extends Area2D
 
-var speed = -1
+const SPEED = 0.7
+
 var is_ready: bool = true
-var enemy = 0
+var direction = -1
+var speed_multiplier = 1
+var target = null
+var damage = 10
+var hp = 30
 
+@onready var troop_range: Area2D = $troop_range
 @onready var animation_player: AnimationPlayer = $Sprite2D/AnimationPlayer
-
-#@onready var troop_sprite: AnimatedSprite2D = $troop_sprite
-
 #@onready var cooldown: Timer = $troop_sprite/cooldown
 
-func damage():
-	print(get_overlapping_areas())
-	print("damage")
-
-func attack():
-	if  is_ready == true and enemy > 0:
-		is_ready = false
-		animation_player.play("attack")
-		#$troop_sprite/cooldown.start()
-		#if troop_sprite.get_frame() == 2:
-		#	print("1dmg")
-		#print(troop_sprite.get_frame())
+func attack(target):
+	animation_player.play("attack")
 	
-func _process(delta: float) -> void:
-	attack()
+func hurt(enemy_target):
+	enemy_target.hp -= damage
+	print(enemy_target)
 	
-func _on_troop_range_area_entered(area: Area2D) -> void:
-	if  area.is_in_group("enemy"):
-		enemy += 1
-		speed = 0
-		print(enemy)
-		
-func _on_troop_range_area_exited(area: Area2D) -> void:
-	if  area.is_in_group("enemy"):
-		enemy -= 1
-		speed = -1
-		animation_player.play("walk")
+func hit():
+	hurt(target)
 
 func _physics_process(delta: float) -> void:
-	move_local_x(speed)
+	var overlapping_areas = troop_range.get_overlapping_areas()
+	var enemies_in_range = overlapping_areas.filter(func(body): return body.is_in_group("enemy"))
+	if enemies_in_range.size() > 0:
+		target = enemies_in_range[randi() % enemies_in_range.size()]
+		attack(target)
+		speed_multiplier = 0
+	else:
+		speed_multiplier = 1
+		animation_player.play("walk")
+	
+	move_local_x(direction * SPEED * speed_multiplier)

@@ -1,24 +1,39 @@
-[gd_scene load_steps=4 format=3 uid="uid://b3dba7rkwbnqo"]
+[gd_scene load_steps=5 format=3 uid="uid://b3dba7rkwbnqo"]
 
 [ext_resource type="Texture2D" uid="uid://drx62hwkmwgmn" path="res://assets/sprites/grass.png" id="1_dy3ee"]
 [ext_resource type="PackedScene" uid="uid://8fylaj05a772" path="res://scenes/enemy_troop.tscn" id="3_f2l8b"]
 [ext_resource type="PackedScene" uid="uid://cfvw6345fnk5p" path="res://scenes/basic_troop.tscn" id="3_nthl7"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_apnto"]
+size = Vector2(1227, 142)
+
 [node name="game" type="Node2D"]
 position = Vector2(429, 225)
 
-[node name="Grass" type="Sprite2D" parent="."]
-position = Vector2(74, 17)
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(154.5, 126)
+shape = SubResource("RectangleShape2D_apnto")
+
+[node name="Grass" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(157.5, 27)
+scale = Vector2(1.47059, 1)
 texture = ExtResource("1_dy3ee")
 
 [node name="basic_troop" parent="." instance=ExtResource("3_nthl7")]
-position = Vector2(447, 6)
+position = Vector2(295, 19)
 scale = Vector2(0.1, 0.1)
 
 [node name="enemy_troop" parent="." instance=ExtResource("3_f2l8b")]
-position = Vector2(-143, 1.19209e-06)
+position = Vector2(-217, 9)
 scale = Vector2(-0.1, 0.1)
 
 [node name="enemy_troop2" parent="." instance=ExtResource("3_f2l8b")]
-position = Vector2(-524, 34)
+position = Vector2(-74, 27)
 scale = Vector2(-0.1, 0.1)
+
+[node name="basic_troop2" parent="." instance=ExtResource("3_nthl7")]
+position = Vector2(480, 32)
+scale = Vector2(0.1, 0.1)

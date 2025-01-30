@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://cfvw6345fnk5p"]
+[gd_scene load_steps=10 format=3 uid="uid://bu84adqcugdcw"]
 
-[ext_resource type="Script" path="res://scripts/troop.gd" id="1_6pa3d"]
-[ext_resource type="Texture2D" uid="uid://6oo3ky8r18io" path="res://assets/sprites/vvmrxw7s.png" id="2_mjyh2"]
+[ext_resource type="Script" path="res://scripts/basic_troop_test.gd" id="1_hynox"]
+[ext_resource type="Texture2D" uid="uid://6oo3ky8r18io" path="res://assets/sprites/vvmrxw7s.png" id="2_1ap6c"]
+[ext_resource type="Script" path="res://scenes/troop_range.gd" id="3_iewow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_by3cu"]
 size = Vector2(697, 758)
@@ -44,11 +45,11 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.466667),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"hit"
+"method": &"damage"
 }]
 }
 
@@ -79,8 +80,8 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ejal"]
 size = Vector2(1000, 758)
 
-[node name="basic_troop" type="Area2D" groups=["troop"]]
-script = ExtResource("1_6pa3d")
+[node name="basic_troop_test" type="CharacterBody2D" groups=["troop"]]
+script = ExtResource("1_hynox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_by3cu")
@@ -88,7 +89,7 @@ shape = SubResource("RectangleShape2D_by3cu")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -50)
 scale = Vector2(15, 15)
-texture = ExtResource("2_mjyh2")
+texture = ExtResource("2_1ap6c")
 hframes = 5
 vframes = 2
 
@@ -100,14 +101,13 @@ libraries = {
 autoplay = "walk"
 
 [node name="troop_range" type="Area2D" parent="."]
+script = ExtResource("3_iewow")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="troop_range"]
 position = Vector2(-148, 0)
 shape = SubResource("RectangleShape2D_8ejal")
 debug_color = Color(0.817772, 0.373445, 0.422414, 0.42)
 
-[connection signal="area_entered" from="." to="troop_range" method="_on_basic_troop_area_entered"]
-[connection signal="area_exited" from="." to="troop_range" method="_on_basic_troop_area_exited"]
-[connection signal="area_entered" from="troop_range" to="." method="_on_troop_range_area_entered"]
 [connection signal="area_entered" from="troop_range" to="troop_range" method="_on_area_entered"]
+[connection signal="area_entered" from="troop_range" to="." method="_on_troop_range_area_entered"]
 [connection signal="area_exited" from="troop_range" to="." method="_on_troop_range_area_exited"]
