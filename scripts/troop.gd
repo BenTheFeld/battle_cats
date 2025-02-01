@@ -2,12 +2,11 @@ extends Area2D
 
 const SPEED = 0.7
 
-var is_ready: bool = true
 var direction = -1
 var speed_multiplier = 1
 var target = null
 var damage = 10
-var hp = 30
+var hp = 80
 
 @onready var troop_range: Area2D = $troop_range
 @onready var animation_player: AnimationPlayer = $Sprite2D/AnimationPlayer
@@ -33,5 +32,8 @@ func _physics_process(delta: float) -> void:
 	else:
 		speed_multiplier = 1
 		animation_player.play("walk")
+		
+	if hp <= 0:
+		queue_free()
 	
 	move_local_x(direction * SPEED * speed_multiplier)

@@ -1,40 +1,111 @@
-[gd_scene load_steps=6 format=3 uid="uid://8fylaj05a772"]
+[gd_scene load_steps=9 format=3 uid="uid://c7kst7w6sla1h"]
 
-[ext_resource type="Texture2D" uid="uid://b6eagbfimgiea" path="res://assets/sprites/troop.png" id="1_6qk32"]
 [ext_resource type="Script" path="res://scripts/enemy_troop.gd" id="1_khroe"]
+[ext_resource type="Texture2D" uid="uid://6oo3ky8r18io" path="res://assets/sprites/vvmrxw7s.png" id="2_mtmcv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_by3cu"]
 size = Vector2(697, 758)
 
-[sub_resource type="GDScript" id="GDScript_bwv4y"]
-script/source = "extends Area2D
+[sub_resource type="Animation" id="Animation_xgyjg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
-@onready var enemy_troop: Area2D = $\"..\"
-"
+[sub_resource type="Animation" id="Animation_6hnvg"]
+resource_name = "attack"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [4, 8, 5, 6]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"hit"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_1817j"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [2, 0, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f5rrs"]
+_data = {
+"RESET": SubResource("Animation_xgyjg"),
+"attack": SubResource("Animation_6hnvg"),
+"walk": SubResource("Animation_1817j")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ejal"]
-size = Vector2(932.5, 758)
+size = Vector2(1000, 758)
 
-[node name="enemy_troop" type="Area2D" groups=["enemy"]]
-scale = Vector2(-1, 1)
+[node name="basic_troop" type="Area2D" groups=["enemy"]]
+scale = Vector2(-0.1, 0.1)
 script = ExtResource("1_khroe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_by3cu")
 
-[node name="Troop" type="Sprite2D" parent="."]
-texture = ExtResource("1_6qk32")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -50)
+scale = Vector2(15, 15)
+texture = ExtResource("2_mtmcv")
+hframes = 5
+vframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_f5rrs")
+}
+autoplay = "walk"
 
 [node name="troop_range" type="Area2D" parent="."]
-script = SubResource("GDScript_bwv4y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="troop_range"]
-position = Vector2(-117.75, 0)
+position = Vector2(-148, 0)
 shape = SubResource("RectangleShape2D_8ejal")
 debug_color = Color(0.817772, 0.373445, 0.422414, 0.42)
 
-[connection signal="area_entered" from="." to="." method="_on_area_entered"]
-[connection signal="area_entered" from="." to="troop_range" method="_on_enemy_troop_area_entered"]
-[connection signal="area_entered" from="troop_range" to="." method="_on_troop_range_area_entered"]
-[connection signal="area_entered" from="troop_range" to="troop_range" method="_on_area_entered"]
-[connection signal="area_exited" from="troop_range" to="." method="_on_troop_range_area_exited"]
+[connection signal="area_entered" from="." to="troop_range" method="_on_basic_troop_area_entered"]
+[connection signal="area_exited" from="." to="troop_range" method="_on_basic_troop_area_exited"]
