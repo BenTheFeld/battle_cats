@@ -1,14 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://b3dba7rkwbnqo"]
+[gd_scene load_steps=6 format=3 uid="uid://b3dba7rkwbnqo"]
 
 [ext_resource type="Texture2D" uid="uid://drx62hwkmwgmn" path="res://assets/sprites/grass.png" id="1_dy3ee"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_w0h34"]
 [ext_resource type="PackedScene" uid="uid://c7kst7w6sla1h" path="res://scenes/enemy_troop.tscn" id="3_edqeu"]
-[ext_resource type="PackedScene" uid="uid://cfvw6345fnk5p" path="res://scenes/basic_troop.tscn" id="3_nthl7"]
+[ext_resource type="PackedScene" uid="uid://d3q2vlu0dk6vo" path="res://scenes/base.tscn" id="4_r44f6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_apnto"]
 size = Vector2(1227, 142)
 
 [node name="game" type="Node2D"]
-position = Vector2(429, 225)
+script = ExtResource("1_w0h34")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
 collision_layer = 15
@@ -22,17 +23,22 @@ position = Vector2(157.5, 27)
 scale = Vector2(1.47059, 1)
 texture = ExtResource("1_dy3ee")
 
-[node name="basic_troop" parent="." instance=ExtResource("3_nthl7")]
-position = Vector2(295, 19)
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(210, 30)
+zoom = Vector2(0.5, 0.5)
 
-[node name="basic_troop2" parent="." instance=ExtResource("3_nthl7")]
-position = Vector2(480, 32)
+[node name="enemy_troop" parent="." instance=ExtResource("3_edqeu")]
+position = Vector2(-405, 29)
 
-[node name="basic_troop3" parent="." instance=ExtResource("3_edqeu")]
-position = Vector2(-370, 9)
+[node name="enemy_troop2" parent="." instance=ExtResource("3_edqeu")]
+position = Vector2(-252, 21)
 
-[node name="basic_troop4" parent="." instance=ExtResource("3_edqeu")]
-position = Vector2(-236, 33)
+[node name="enemy_troop3" parent="." instance=ExtResource("3_edqeu")]
+position = Vector2(500, 22)
 
-[node name="basic_troop5" parent="." instance=ExtResource("3_edqeu")]
-position = Vector2(-85, 9)
+[node name="base" parent="." instance=ExtResource("4_r44f6")]
+position = Vector2(681, -82)
+
+[node name="hitbox" parent="base" index="1" groups=["troop"]]
+
+[editable path="base"]

@@ -12,7 +12,7 @@ var hp = 80
 @onready var animation_player: AnimationPlayer = $Sprite2D/AnimationPlayer
 #@onready var cooldown: Timer = $troop_sprite/cooldown
 
-func attack(target):
+func attack():
 	animation_player.play("attack")
 	
 func hurt(enemy_target):
@@ -27,7 +27,7 @@ func _physics_process(delta: float) -> void:
 	var enemies_in_range = overlapping_areas.filter(func(body): return body.is_in_group("enemy"))
 	if enemies_in_range.size() > 0:
 		target = enemies_in_range[randi() % enemies_in_range.size()]
-		attack(target)
+		attack()
 		speed_multiplier = 0
 	else:
 		speed_multiplier = 1

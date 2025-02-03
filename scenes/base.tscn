@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3q2vlu0dk6vo"]
+
+[ext_resource type="Script" path="res://scripts/base.gd" id="1_nr28p"]
+[ext_resource type="Texture2D" uid="uid://bbymdug525brt" path="res://assets/sprites/base.png" id="1_qq2f6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nth8"]
+size = Vector2(146, 241)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7v8b7"]
+radius = 38.6005
+
+[node name="base" type="Area2D" groups=["troop"]]
+script = ExtResource("1_nr28p")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_qq2f6")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(3, 39)
+shape = SubResource("RectangleShape2D_4nth8")
+
+[node name="spawn" type="CollisionShape2D" parent="." groups=["troop"]]
+position = Vector2(0, 122)
+shape = SubResource("CircleShape2D_7v8b7")
+disabled = true
+debug_color = Color(1.35368e-08, 0.0520485, 0.0683918, 0.42)

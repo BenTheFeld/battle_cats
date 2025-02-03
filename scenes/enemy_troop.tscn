@@ -79,7 +79,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8ejal"]
 size = Vector2(1000, 758)
 
-[node name="basic_troop" type="Area2D" groups=["enemy"]]
+[node name="enemy_troop" type="Area2D" groups=["enemy"]]
 scale = Vector2(-0.1, 0.1)
 script = ExtResource("1_khroe")
 
