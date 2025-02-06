@@ -12,12 +12,15 @@ var hp = 80
 @onready var animation_player: AnimationPlayer = $Sprite2D/AnimationPlayer
 #@onready var cooldown: Timer = $troop_sprite/cooldown
 
+func _ready() -> void:
+	z_index = position.y
+
 func attack():
 	animation_player.play("attack")
 	
 func hurt(enemy_target):
-	enemy_target.hp -= damage
-	print(enemy_target)
+		enemy_target.hp -= damage
+		print(enemy_target)
 	
 func hit():
 	hurt(target)

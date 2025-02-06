@@ -24,3 +24,12 @@ position = Vector2(0, 122)
 shape = SubResource("CircleShape2D_7v8b7")
 disabled = true
 debug_color = Color(1.35368e-08, 0.0520485, 0.0683918, 0.42)
+
+[node name="hp_label" type="Label" parent="."]
+offset_left = -82.0
+offset_top = -202.0
+offset_right = 82.0
+offset_bottom = -163.0
+theme_override_font_sizes/font_size = 30
+text = "HP"
+horizontal_alignment = 1

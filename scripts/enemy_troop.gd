@@ -5,11 +5,14 @@ const SPEED = 0.7
 var direction = -1
 var speed_multiplier = 1
 var target = null
-var damage = 8
-var hp = 60
+var damage = 10
+var hp = 70
 
 @onready var troop_range: Area2D = $troop_range
 @onready var animation_player: AnimationPlayer = $Sprite2D/AnimationPlayer
+
+func _ready() -> void:
+	z_index = position.y
 
 func attack():
 	animation_player.play("attack")
