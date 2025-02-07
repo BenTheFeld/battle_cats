@@ -20,7 +20,6 @@ func attack():
 func hurt(enemy_target):
 	if target != null:
 		enemy_target.hp -= damage
-		print(enemy_target)
 	else: 
 		pass
 	

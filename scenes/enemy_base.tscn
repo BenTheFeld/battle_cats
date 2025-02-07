@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://dapkmdcf1ipvi"]
+
+[ext_resource type="Script" path="res://scripts/base.gd" id="1_m246s"]
+[ext_resource type="Texture2D" uid="uid://bbymdug525brt" path="res://assets/sprites/base.png" id="2_v7u1d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nth8"]
+size = Vector2(146, 241)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7v8b7"]
+radius = 38.6005
+
+[node name="enemy_base" type="Area2D" groups=["enemy"]]
+script = ExtResource("1_m246s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(-1, 1)
+texture = ExtResource("2_v7u1d")
+
+[node name="hitbox" type="CollisionShape2D" parent="."]
+position = Vector2(-4, 38)
+scale = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_4nth8")
+
+[node name="spawn" type="CollisionShape2D" parent="." groups=["troop"]]
+position = Vector2(0, 122)
+scale = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_7v8b7")
+disabled = true
+debug_color = Color(1.35368e-08, 0.0520485, 0.0683918, 0.42)
+
+[node name="hp_label" type="Label" parent="."]
+offset_left = -82.0
+offset_top = -202.0
+offset_right = 82.0
+offset_bottom = -163.0
+theme_override_font_sizes/font_size = 30
+text = "HP"
+horizontal_alignment = 1

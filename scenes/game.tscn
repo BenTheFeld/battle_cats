@@ -1,24 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://b3dba7rkwbnqo"]
+[gd_scene load_steps=5 format=3 uid="uid://b3dba7rkwbnqo"]
 
 [ext_resource type="Texture2D" uid="uid://drx62hwkmwgmn" path="res://assets/sprites/grass.png" id="1_dy3ee"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_w0h34"]
-[ext_resource type="PackedScene" uid="uid://c7kst7w6sla1h" path="res://scenes/enemy_troop.tscn" id="3_edqeu"]
+[ext_resource type="PackedScene" uid="uid://dapkmdcf1ipvi" path="res://scenes/enemy_base.tscn" id="4_ffwk0"]
 [ext_resource type="PackedScene" uid="uid://d3q2vlu0dk6vo" path="res://scenes/base.tscn" id="4_r44f6"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_apnto"]
-size = Vector2(1227, 142)
-
 [node name="game" type="Node2D"]
+metadata/_edit_lock_ = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-collision_layer = 15
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(154.5, 126)
-shape = SubResource("RectangleShape2D_apnto")
-
-[node name="Grass" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(157.5, 27)
+[node name="Grass" type="Sprite2D" parent="."]
+position = Vector2(605, 354)
 scale = Vector2(1.47059, 1)
 texture = ExtResource("1_dy3ee")
 
@@ -26,7 +17,7 @@ texture = ExtResource("1_dy3ee")
 script = ExtResource("1_w0h34")
 
 [node name="Camera2D" type="Camera2D" parent="game_manager"]
-position = Vector2(182, -77)
+position = Vector2(626, 342)
 zoom = Vector2(0.8, 0.8)
 
 [node name="money_label" type="Label" parent="game_manager/Camera2D"]
@@ -39,13 +30,13 @@ text = "Money"
 horizontal_alignment = 2
 
 [node name="base" parent="game_manager" instance=ExtResource("4_r44f6")]
-position = Vector2(681, -82)
+position = Vector2(1116, 265)
 
-[node name="enemy_troop" parent="." instance=ExtResource("3_edqeu")]
-position = Vector2(-405, 29)
+[node name="enemy_base" parent="game_manager" instance=ExtResource("4_ffwk0")]
+position = Vector2(85, 252)
 
-[node name="enemy_troop2" parent="." instance=ExtResource("3_edqeu")]
-position = Vector2(-197, 33)
+[node name="enemy_spawn_timer" type="Timer" parent="game_manager"]
+wait_time = 2.0
+autostart = true
 
-[node name="enemy_troop3" parent="." instance=ExtResource("3_edqeu")]
-position = Vector2(26, 15)
+[connection signal="timeout" from="game_manager/enemy_spawn_timer" to="game_manager" method="_on_timer_timeout"]

@@ -18,8 +18,11 @@ func attack():
 	animation_player.play("attack")
 	
 func hurt(enemy_target):
-	enemy_target.hp -= damage
-	
+	if target != null:
+		enemy_target.hp -= damage
+	else: 
+		pass
+		
 func hit():
 	hurt(target)
 

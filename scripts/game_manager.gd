@@ -2,13 +2,16 @@ extends Node2D
 
 @onready var spawn: CollisionShape2D = $base/spawn
 @onready var money_label: Label = $Camera2D/money_label
+@onready var enemy_spawn: CollisionShape2D = $enemy_base/spawn
+@onready var enemy_spawn_timer: Timer = $enemy_spawn_timer
 
 var troop1 = preload("res://scenes/basic_troop.tscn")
+var enemy1 = preload("res://scenes/enemy_troop.tscn")
 var money: float = 0.0
-var earnings: float = 40.0
+var earnings: float = 50
 
-func inst(pos):
-	var instance = troop1.instantiate()
+func inst(pos, troop):
+	var instance = troop.instantiate()
 	instance.position = pos
 	add_child(instance)
 
@@ -19,5 +22,11 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("key 1") and money > 50:
 		var spawn_position = spawn.global_position  
 		spawn_position.y += randi_range(0, 20)  
-		inst(spawn_position)
+		inst(spawn_position, troop1)
 		money -= 50
+
+func _on_timer_timeout() -> void:
+	enemy_spawn_timer.start()
+	var enemy_spawn_position = enemy_spawn.global_position  
+	enemy_spawn_position.y += randi_range(0, 20)  
+	inst(enemy_spawn_position, enemy1)
