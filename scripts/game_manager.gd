@@ -26,7 +26,6 @@ func _physics_process(delta: float) -> void:
 		money -= 50
 
 func _on_timer_timeout() -> void:
-	enemy_spawn_timer.start()
 	var enemy_spawn_position = enemy_spawn.global_position  
 	enemy_spawn_position.y += randi_range(0, 20)  
 	inst(enemy_spawn_position, enemy1)

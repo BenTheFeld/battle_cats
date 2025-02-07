@@ -24,31 +24,31 @@ offset_right = 617.0
 offset_bottom = -231.0
 theme_override_colors/font_color = Color(0.937255, 0.698039, 0, 1)
 theme_override_fonts/font = ExtResource("2_qjq2o")
-theme_override_font_sizes/font_size = 70
+theme_override_font_sizes/font_size = 50
 text = "Money"
 horizontal_alignment = 2
 
 [node name="Grass" type="Sprite2D" parent="game_manager"]
-position = Vector2(610, 509)
-scale = Vector2(1.7491, 1.41)
+position = Vector2(613, 546.25)
+scale = Vector2(1.87035, 1.65833)
 texture = ExtResource("1_dy3ee")
 
+[node name="Sky3" type="Sprite2D" parent="game_manager/Grass"]
+z_index = -1
+position = Vector2(-1.06937, -160.553)
+scale = Vector2(0.433611, 0.459171)
+texture = ExtResource("5_t416m")
+
 [node name="base" parent="game_manager/Grass" instance=ExtResource("4_r44f6")]
-position = Vector2(297.868, -50.3546)
-scale = Vector2(0.571723, 0.70922)
+position = Vector2(276.954, -65.2764)
+scale = Vector2(0.53466, 0.603015)
 
 [node name="enemy_base" parent="game_manager/Grass" instance=ExtResource("4_ffwk0")]
-position = Vector2(-282.431, -53.1915)
-scale = Vector2(0.571723, 0.70922)
+position = Vector2(-265.726, -67.6884)
+scale = Vector2(0.53466, 0.603015)
 
 [node name="enemy_spawn_timer" type="Timer" parent="game_manager"]
-wait_time = 2.0
+wait_time = 4.0
 autostart = true
-
-[node name="Sky3" type="Sprite2D" parent="."]
-z_index = -1
-position = Vector2(611, 280)
-scale = Vector2(0.811003, 0.761458)
-texture = ExtResource("5_t416m")
 
 [connection signal="timeout" from="game_manager/enemy_spawn_timer" to="game_manager" method="_on_timer_timeout"]

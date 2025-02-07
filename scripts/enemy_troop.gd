@@ -5,8 +5,8 @@ const SPEED = 0.7
 var direction = -1
 var speed_multiplier = 1
 var target = null
-var damage = 10
-var hp = 70
+var damage = 5
+var hp = 150
 
 @onready var troop_range: Area2D = $troop_range
 @onready var animation_player: AnimationPlayer = $Sprite2D/AnimationPlayer
