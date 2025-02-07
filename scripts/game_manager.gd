@@ -12,7 +12,7 @@ func inst(pos):
 	instance.position = pos
 	add_child(instance)
 
-func _process(delta: float) -> void:
+func _physics_process(delta: float) -> void:
 	money += earnings/60
 	money_label.text = str(int(money)) + " Money " + str(earnings) + "/s"
 	 
