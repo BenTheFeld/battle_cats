@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://d3q2vlu0dk6vo"]
+[gd_scene load_steps=6 format=3 uid="uid://d3q2vlu0dk6vo"]
 
 [ext_resource type="Script" path="res://scripts/base.gd" id="1_nr28p"]
 [ext_resource type="Texture2D" uid="uid://bbymdug525brt" path="res://assets/sprites/base.png" id="1_qq2f6"]
+[ext_resource type="FontFile" uid="uid://6a62lm48n53b" path="res://assets/fonts/SuperMario256.ttf" id="3_7uqgd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4nth8"]
 size = Vector2(146, 241)
@@ -30,6 +31,8 @@ offset_left = -82.0
 offset_top = -202.0
 offset_right = 82.0
 offset_bottom = -163.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_7uqgd")
 theme_override_font_sizes/font_size = 30
 text = "HP"
 horizontal_alignment = 1

@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://drx62hwkmwgmn" path="res://assets/sprites/grass.png" id="1_dy3ee"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_w0h34"]
 [ext_resource type="FontFile" uid="uid://6a62lm48n53b" path="res://assets/fonts/SuperMario256.ttf" id="2_qjq2o"]
-[ext_resource type="PackedScene" uid="uid://dapkmdcf1ipvi" path="res://scenes/enemy_base.tscn" id="4_ffwk0"]
-[ext_resource type="PackedScene" uid="uid://d3q2vlu0dk6vo" path="res://scenes/base.tscn" id="4_r44f6"]
+[ext_resource type="PackedScene" uid="uid://dapkmdcf1ipvi" path="res://assets/scenes/enemy_base.tscn" id="4_ffwk0"]
+[ext_resource type="PackedScene" uid="uid://d3q2vlu0dk6vo" path="res://assets/scenes/base.tscn" id="4_r44f6"]
 [ext_resource type="Texture2D" uid="uid://bdyho1n4008em" path="res://assets/sprites/sky3.jpg" id="5_t416m"]
 
 [node name="game" type="Node2D"]

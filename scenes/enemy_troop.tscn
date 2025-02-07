@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://c7kst7w6sla1h"]
 
-[ext_resource type="Script" path="res://scripts/enemy_troop.gd" id="1_khroe"]
-[ext_resource type="Texture2D" uid="uid://6oo3ky8r18io" path="res://assets/sprites/vvmrxw7s.png" id="2_mtmcv"]
+[ext_resource type="Script" path="res://scripts/enemy_troop.gd" id="1_rj5u4"]
+[ext_resource type="Texture2D" uid="uid://6oo3ky8r18io" path="res://assets/sprites/vvmrxw7s.png" id="2_2wuep"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_by3cu"]
 size = Vector2(697, 758)
@@ -81,7 +81,7 @@ size = Vector2(1000, 758)
 
 [node name="enemy_troop" type="Area2D" groups=["enemy"]]
 scale = Vector2(-0.1, 0.1)
-script = ExtResource("1_khroe")
+script = ExtResource("1_rj5u4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_by3cu")
@@ -89,7 +89,7 @@ shape = SubResource("RectangleShape2D_by3cu")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -50)
 scale = Vector2(15, 15)
-texture = ExtResource("2_mtmcv")
+texture = ExtResource("2_2wuep")
 hframes = 5
 vframes = 2
 

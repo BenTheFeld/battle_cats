@@ -1,8 +1,8 @@
 extends Node2D
 
-@onready var spawn: CollisionShape2D = $base/spawn
 @onready var money_label: Label = $Camera2D/money_label
-@onready var enemy_spawn: CollisionShape2D = $enemy_base/spawn
+@onready var spawn: CollisionShape2D = $Grass/base/spawn
+@onready var enemy_spawn: CollisionShape2D = $Grass/enemy_base/spawn
 @onready var enemy_spawn_timer: Timer = $enemy_spawn_timer
 
 var troop1 = preload("res://scenes/basic_troop.tscn")
