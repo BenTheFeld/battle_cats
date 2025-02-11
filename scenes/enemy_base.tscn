@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://dapkmdcf1ipvi"]
 
-[ext_resource type="Script" path="res://scripts/base.gd" id="1_m246s"]
+[ext_resource type="Script" path="res://scripts/enemy_base.gd" id="1_ajkoi"]
 [ext_resource type="Texture2D" uid="uid://bbymdug525brt" path="res://assets/sprites/base.png" id="2_v7u1d"]
-[ext_resource type="FontFile" uid="uid://6a62lm48n53b" path="res://assets/fonts/SuperMario256.ttf" id="3_ju6nu"]
+[ext_resource type="FontFile" uid="uid://ce3ay1jv7nkie" path="res://assets/fonts/Nexa-Heavy.ttf" id="3_53btr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4nth8"]
 size = Vector2(146, 241)
@@ -11,7 +11,7 @@ size = Vector2(146, 241)
 radius = 38.6005
 
 [node name="enemy_base" type="Area2D" groups=["enemy"]]
-script = ExtResource("1_m246s")
+script = ExtResource("1_ajkoi")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(-1, 1)
@@ -30,12 +30,12 @@ disabled = true
 debug_color = Color(1.35368e-08, 0.0520485, 0.0683918, 0.42)
 
 [node name="hp_label" type="Label" parent="."]
-offset_left = -82.0
-offset_top = -202.0
-offset_right = 82.0
-offset_bottom = -163.0
+offset_left = -81.0
+offset_top = -199.0
+offset_right = 83.0
+offset_bottom = -160.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_ju6nu")
+theme_override_fonts/font = ExtResource("3_53btr")
 theme_override_font_sizes/font_size = 30
 text = "HP"
 horizontal_alignment = 1

@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://b3dba7rkwbnqo"]
+[gd_scene load_steps=9 format=3 uid="uid://b3dba7rkwbnqo"]
 
 [ext_resource type="Texture2D" uid="uid://drx62hwkmwgmn" path="res://assets/sprites/grass.png" id="1_dy3ee"]
 [ext_resource type="Script" path="res://scripts/game_manager.gd" id="1_w0h34"]
-[ext_resource type="FontFile" uid="uid://6a62lm48n53b" path="res://assets/fonts/SuperMario256.ttf" id="2_qjq2o"]
+[ext_resource type="FontFile" uid="uid://jqqa67kty8s7" path="res://assets/fonts/digital.ttf" id="2_3risl"]
+[ext_resource type="FontFile" uid="uid://dg2i1v7wip7bw" path="res://assets/fonts/Forque.ttf" id="3_u5kit"]
 [ext_resource type="PackedScene" uid="uid://dapkmdcf1ipvi" path="res://scenes/enemy_base.tscn" id="4_ffwk0"]
 [ext_resource type="PackedScene" uid="uid://d3q2vlu0dk6vo" path="res://scenes/base.tscn" id="4_r44f6"]
 [ext_resource type="Texture2D" uid="uid://bdyho1n4008em" path="res://assets/sprites/sky3.jpg" id="5_t416m"]
+[ext_resource type="PackedScene" uid="uid://vmwl815g0j4t" path="res://scenes/troop_button.tscn" id="8_5takk"]
 
 [node name="game" type="Node2D"]
 metadata/_edit_lock_ = true
@@ -14,29 +16,50 @@ metadata/_edit_lock_ = true
 script = ExtResource("1_w0h34")
 
 [node name="Camera2D" type="Camera2D" parent="game_manager"]
+z_index = 1000
 position = Vector2(616, 358)
 zoom = Vector2(0.9, 0.9)
+
+[node name="troop_button" parent="game_manager/Camera2D" instance=ExtResource("8_5takk")]
+offset_left = -341.0
+offset_top = 223.0
+offset_right = -231.0
+offset_bottom = 308.0
 
 [node name="money_label" type="Label" parent="game_manager/Camera2D"]
 offset_left = -140.0
 offset_top = -349.0
 offset_right = 617.0
 offset_bottom = -231.0
-theme_override_colors/font_color = Color(0.937255, 0.698039, 0, 1)
-theme_override_fonts/font = ExtResource("2_qjq2o")
+theme_override_colors/font_color = Color(0.988235, 0.839216, 0, 1)
+theme_override_colors/font_shadow_color = Color(0.976124, 0.585655, 3.85046e-07, 1)
+theme_override_fonts/font = ExtResource("2_3risl")
 theme_override_font_sizes/font_size = 50
 text = "Money"
 horizontal_alignment = 2
 
+[node name="game_outcome" type="Label" parent="game_manager/Camera2D"]
+visible = false
+offset_left = -497.0
+offset_top = -154.0
+offset_right = 516.0
+offset_bottom = 160.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_u5kit")
+theme_override_font_sizes/font_size = 300
+text = "You Lost"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Grass" type="Sprite2D" parent="game_manager"]
-position = Vector2(613, 546.25)
+position = Vector2(608, 477)
 scale = Vector2(1.87035, 1.65833)
 texture = ExtResource("1_dy3ee")
 
 [node name="Sky3" type="Sprite2D" parent="game_manager/Grass"]
 z_index = -1
-position = Vector2(-1.06937, -160.553)
-scale = Vector2(0.433611, 0.459171)
+position = Vector2(-0.65124, -160.553)
+scale = Vector2(0.433175, 0.459171)
 texture = ExtResource("5_t416m")
 
 [node name="base" parent="game_manager/Grass" instance=ExtResource("4_r44f6")]
@@ -44,11 +67,15 @@ position = Vector2(276.954, -65.2764)
 scale = Vector2(0.53466, 0.603015)
 
 [node name="enemy_base" parent="game_manager/Grass" instance=ExtResource("4_ffwk0")]
-position = Vector2(-265.726, -67.6884)
+position = Vector2(-273.746, -67.6886)
 scale = Vector2(0.53466, 0.603015)
 
 [node name="enemy_spawn_timer" type="Timer" parent="game_manager"]
 wait_time = 4.0
 autostart = true
 
+[connection signal="pressed" from="game_manager/Camera2D/troop_button" to="game_manager" method="_on_troop_button_pressed"]
+[connection signal="timeout" from="game_manager/Camera2D/troop_button/cooldown" to="game_manager" method="troop1_on_cooldown_timeout"]
 [connection signal="timeout" from="game_manager/enemy_spawn_timer" to="game_manager" method="_on_timer_timeout"]
+
+[editable path="game_manager/Camera2D/troop_button"]

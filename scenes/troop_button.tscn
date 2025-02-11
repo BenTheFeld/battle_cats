@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://vmwl815g0j4t"]
+
+[ext_resource type="Texture2D" uid="uid://3717f82acdbm" path="res://assets/sprites/Uni000_f00.jpg" id="1_mtio1"]
+[ext_resource type="Texture2D" uid="uid://r503feslywkj" path="res://assets/sprites/Uni000_f00pressed.jpg" id="2_4vbwk"]
+[ext_resource type="Texture2D" uid="uid://d2vdutnju5alc" path="res://assets/sprites/Uni000_f00hover.jpg" id="3_qe6ch"]
+
+[node name="troop_button" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+texture_normal = ExtResource("1_mtio1")
+texture_pressed = ExtResource("2_4vbwk")
+texture_hover = ExtResource("3_qe6ch")
+texture_disabled = ExtResource("2_4vbwk")
+
+[node name="cooldown" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
